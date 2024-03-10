@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -29,13 +30,14 @@ public class TraderRunner {
 
 		// 3. Find all traders from Cambridge and sort them by name.
 		List<Trader> tradersFromCambridgeSortedByName = transactions.stream().map(Transaction::getTrader)
-				.filter(t -> t != null && "Cambridge".equals(t.getCity())).filter(t -> t.getName() != null)
-				.sorted(Comparator.comparing(Trader::getName)).collect(Collectors.toList());
+				.filter(Objects::nonNull).filter(t -> "Cambridge".equals(t.getCity()))
+				.filter(t -> Objects.nonNull(t.getName())).sorted(Comparator.comparing(Trader::getName))
+				.collect(Collectors.toList());
 		System.out.println(tradersFromCambridgeSortedByName);
 
 		// 4. Return a string of all traders’ names sorted alphabetically.
-		String sortedTraders = transactions.stream().map(Transaction::getTrader)
-				.filter(t -> t != null && t.getName() != null).map(Trader::getName).distinct().sorted()
+		String sortedTraders = transactions.stream().map(Transaction::getTrader).filter(Objects::nonNull)
+				.filter(t -> Objects.nonNull(t.getName())).map(Trader::getName).distinct().sorted()
 				.collect(Collectors.joining(","));
 		System.out.println(sortedTraders);
 
