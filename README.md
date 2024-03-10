@@ -1,5 +1,6 @@
 # java-8-practice-problem-trader
 
+~~~
 Trader raoul = new Trader("Raoul", "Cambridge");
 Trader mario = new Trader("Mario","Milan");
 Trader alan = new Trader("Alan","Cambridge");
@@ -12,75 +13,64 @@ new Transaction(raoul, 2011, 400),
 new Transaction(mario, 2012, 710),
 new Transaction(mario, 2012, 700),
 new Transaction(alan, 2012, 950));
+~~~
 
-Trader and Transaction are classes defined as follows:
+## Trader and Transaction are classes defined as follows:
 
-public class Trader{
-private final String name;
-private final String city;
-public Trader(String n, String c){
-this.name = n;
-this.city = c;
-}
-public String getName(){
-return this.name;
-}
-public String getCity(){
-return this.city;
-}
-public String toString(){
-return "Trader:"+this.name + " in " + this.city;
-}
-}
+~~~
+public class Trader {
+	private final String name;
+	private final String city;
 
-public class Transaction{
-private final Trader trader;
+	public Trader(String n, String c) {
+		this.name = n;
+		this.city = c;
+	}
 
-private final int year;
+	public String getName() {
+		return this.name;
+	}
 
-private final int value;
+	public String getCity() {
+		return this.city;
+	}
 
-public Transaction(Trader trader, int year, int value){
-
-this.trader = trader;
-
-this.year = year;
-
-this.value = value;
-
+	public String toString() {
+		return "Trader:" + this.name + " in " + this.city;
+	}
 }
 
-public Trader getTrader(){
+public class Transaction {
+	private final Trader trader;
+	private final int year;
+	private final int value;
 
-return this.trader;
+	public Transaction(Trader trader, int year, int value) {
+		this.trader = trader;
+		this.year = year;
+		this.value = value;
+	}
+
+	public Trader getTrader() {
+		return this.trader;
+	}
+
+	public int getYear() {
+		return this.year;
+	}
+
+	public int getValue() {
+		return this.value;
+	}
+
+	public String toString() {
+		return "{" + this.trader + ", " + "year: " + this.year + ", " + "value:" + this.value + "}";
+	}
 
 }
+~~~
 
-public int getYear(){
-
-return this.year;
-
-}
-
-public int getValue(){
-
-return this.value;
-
-}
-
-public String toString(){
-
-return "{" + this.trader + ", " +
-
-"year: "+this.year+", " +
-
-"value:" + this.value +"}";
-
-}
-
-}
-
-Find answers to the below queries!
+## Find answers to the below queries!
 1. Find all transactions in the year 2011 and sort them by value (small to high).
 2. What are all the unique cities where the traders work?
 3. Find all traders from Cambridge and sort them by name.
